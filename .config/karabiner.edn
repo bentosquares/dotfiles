@@ -1,0 +1,144 @@
+;; edn spec https://github.com/edn-format/edn
+{
+    ;;establish templates first
+    :templates {:yabai "/opt/homebrew/bin/yabai -m %s"
+    }    
+    ;;begin main list
+    :main [{:des "hyper" 
+        :rules [[:##caps_lock ["hyper-mode" 1] nil {:afterup ["hyper-mode" 0] :alone :escape}]
+        ]
+    }
+        {:des "hjkl movement"
+            :rules [[:##h :left_arrow :hyper-mode] ;;## allows for all other modifiers (shift, cmd, opt, etc) to be added
+                    [:##j :down_arrow :hyper-mode]
+                    [:##k :up_arrow :hyper-mode]
+                    [:##l :right_arrow :hyper-mode]
+                    [:u :home :hyper-mode]
+                    [:i :!Oleft_arrow :hyper-mode]
+                    [:o :!Oright_arrow :hyper-mode]
+                    [:p :end :hyper-mode]
+            ]
+        }
+        {:des "nm,. deletion"
+            :rules [[:n :!Odelete_or_backspace :hyper-mode]
+                    [:m :delete_or_backspace :hyper-mode]
+                    [:comma :delete_forward :hyper-mode]
+                    [:period :!Odelete_forward :hyper-mode]
+            ]
+        }
+        {:des "Function Keys"
+            :rules [[:f1 :display_brightness_decrement :hyper-mode]
+                    [:f2 :display_brightness_increment :hyper-mode]
+                    [:f3 :mission_control :hyper-mode]
+                    [:f4 :launchpad :hyper-mode]
+                    [:f5 :illumination_decrement :hyper-mode]
+                    [:f6 :illumination_increment :hyper-mode]
+                    [:f7 :rewind :hyper-mode]
+                    [:f8 :play_or_pause :hyper-mode]
+                    [:f9 :fastforward :hyper-mode]
+                    [:f10 :mute :hyper-mode]
+                    [:f11 :volume_decrement :hyper-mode]
+                    [:f12 :volume_increment :hyper-mode]
+            ]
+        }
+        {:des "yabai controls"
+            :rules [;;focus spaces
+                    [:1 [:yabai "space --focus 1"] :hyper-mode] ;;':yabai' calls template
+                    [:2 [:yabai "space --focus 2"] :hyper-mode]
+                    [:3 [:yabai "space --focus 3"] :hyper-mode]
+                    [:4 [:yabai "space --focus 4"] :hyper-mode] 
+                    [:5 [:yabai "space --focus 5"] :hyper-mode]   
+                    ;;focus displays
+                    [:grave_accent_and_tilde [:yabai "display --focus next || /opt/homebrew/bin/yabai -m display --focus first"] :hyper-mode] ;;can't call template mid-line
+                    [:!Cgrave_accent_and_tilde [:yabai "display --focus prev || /opt/homebrew/bin/yabai -m display --focus last"] :hyper-mode]
+                    ;;focus windows
+                    [:a [:yabai "window --focus west"] :hyper-mode]   
+                    [:s [:yabai "window --focus south"] :hyper-mode]
+                    [:w [:yabai "window --focus north"] :hyper-mode]
+                    [:d [:yabai "window --focus east"] :hyper-mode] 
+                    ;;move windows within space
+                    [:!Ca [:yabai "window --warp west"] :hyper-mode]
+                    [:!Cs [:yabai "window --warp south"] :hyper-mode]
+                    [:!Cw [:yabai "window --warp north"] :hyper-mode]
+                    [:!Cd [:yabai "window --warp east"] :hyper-mode]                    
+                    ;;swap windows within space
+                    [:!Oa [:yabai "window --swap west"] :hyper-mode]
+                    [:!Os [:yabai "window --swap south"] :hyper-mode]
+                    [:!Ow [:yabai "window --swap north"] :hyper-mode]
+                    [:!Od [:yabai "window --swap east"] :hyper-mode]
+                    ;;move windows to other spaces
+                    [:!C1 ["WIN=$(/opt/homebrew/bin/yabai -m query --windows --window | /opt/homebrew/bin/jq -re \".id\") && /opt/homebrew/bin/yabai -m window --space 1 && /opt/homebrew/bin/yabai -m space --focus 1 && /opt/homebrew/bin/yabai -m window --focus $WIN"] :hyper-mode] ;;can't call templates mid-line
+                    [:!C2 ["WIN=$(/opt/homebrew/bin/yabai -m query --windows --window | /opt/homebrew/bin/jq -re \".id\") && /opt/homebrew/bin/yabai -m window --space 2 && /opt/homebrew/bin/yabai -m space --focus 2 && /opt/homebrew/bin/yabai -m window --focus $WIN"] :hyper-mode]
+                    [:!C3 ["WIN=$(/opt/homebrew/bin/yabai -m query --windows --window | /opt/homebrew/bin/jq -re \".id\") && /opt/homebrew/bin/yabai -m window --space 3 && /opt/homebrew/bin/yabai -m space --focus 3 && /opt/homebrew/bin/yabai -m window --focus $WIN"] :hyper-mode]
+                    [:!C4 ["WIN=$(/opt/homebrew/bin/yabai -m query --windows --window | /opt/homebrew/bin/jq -re \".id\") && /opt/homebrew/bin/yabai -m window --space 4 && /opt/homebrew/bin/yabai -m space --focus 4 && /opt/homebrew/bin/yabai -m window --focus $WIN"] :hyper-mode]
+                    [:!C5 ["WIN=$(/opt/homebrew/bin/yabai -m query --windows --window | /opt/homebrew/bin/jq -re \".id\") && /opt/homebrew/bin/yabai -m window --space 5 && /opt/homebrew/bin/yabai -m space --focus 5 && /opt/homebrew/bin/yabai -m window --focus $WIN"] :hyper-mode]
+                    ;;[:c ["/Users/ben/.config/yabai/moveWindowLeftAndFollowFocus.sh"] :hyper-mode]
+                    [:c ["WIN=$(/opt/homebrew/bin/yabai -m query --windows --window | /opt/homebrew/bin/jq -re \".id\") && /opt/homebrew/bin/yabai -m window --display next || /opt/homebrew/bin/yabai -m window --display first && /opt/homebrew/bin/yabai -m window --focus $WIN"] :hyper-mode]
+                    ;;toggle zoom
+                    [:z [:yabai "window --toggle zoom-parent"] :hyper-mode]
+                    ;;increase window size
+                    [:!Ca [:yabai "window --resize left:-20:0"] :hyper-mode]
+                    [:!Cs [:yabai "window --resize bottom:0:20"] :hyper-mode]
+                    [:!Cw [:yabai "window --resize top:0:-20"] :hyper-mode]
+                    [:!Cd [:yabai "window --resize right:20:0"] :hyper-mode]
+                    ;;decrease window size
+                    [:!Oa [:yabai "window --resize left:20:0"]  :hyper-mode]
+                    [:!Os [:yabai "window --resize bottom:0:-20"]  :hyper-mode]
+                    [:!Ow [:yabai "window --resize top:0:20"]  :hyper-mode]
+                    [:!Od [:yabai "window --resize right:-20:0"]  :hyper-mode]
+                    ;; window size resets
+                    [:!Ta [:yabai "window --resize left:$( expr $( /opt/homebrew/bin/yabai -m query --windows --window | /opt/homebrew/bin/jq \".frame.w\") - $( /opt/homebrew/bin/yabai -m query --displays --space | /opt/homebrew/bin/jq \".frame.w\"/2 ) ):0"] :hyper-mode]
+                    [:!Td [:yabai "window --resize right:$( expr $( /opt/homebrew/bin/yabai -m query --displays --space | /opt/homebrew/bin/jq \".frame.w\"/2 ) - $( /opt/homebrew/bin/yabai -m query --windows --window | /opt/homebrew/bin/jq \".frame.w\") ):0"] :hyper-mode]
+                    ;;toggle window fullscreen
+                    [:f [:yabai "window --toggle zoom-fullscreen"] :hyper-mode]
+                    ;;toggle window float
+                    [:g [:yabai "window --toggle float && /opt/homebrew/bin/yabai -m window --grid 1:6:1:0:4:1"] :hyper-mode]    
+                    ;;rotate layout
+                    [:r [:yabai "space --rotate 90"] :hyper-mode]
+                    ;;toggle split
+                    [:!Oe [:yabai "window --toggle split"]] 
+                    ;;toggle sticky, float and resize to picture-in-picture size
+                    [:!Op [:yabai "window --toggle sticky | /opt/homebrew/bin/yabai -m window --grid 5:5:4:0:1:1"]]
+                    ;;toggle window border
+                    [:!OSb [:yabai "window --toggle border"]]
+                    ;;close focused app  
+                    [:delete_or_backspace ["$(usr/local/bin/yabai -m window $(usr/local/bin/yabai -m query --windows --window | /opt/homebrew/bin/jq -re \".id\") --close)"] :hyper-mode]
+                    ;;restart yabai launch agent
+                    [:!TOCr "launchctl kickstart -k \"gui/${UID}/homebrew.mxcl.yabai\""]
+                    ;;toggle focus-follow-mouse
+                    [:!CTm "[[ $(/opt/homebrew/bin/yabai -m config focus_follows_mouse) = \"disabled\" ]] && /opt/homebrew/bin/yabai -m config focus_follows_mouse autofocus || /opt/homebrew/bin/yabai -m config focus_follows_mouse off" :hyper-mode]
+            ]
+        }
+        {:des "app launchers"
+            :rules [;; [:return_or_enter :!COTSreturn_or_enter :hyper-mode]
+                    [:return_or_enter "open -na /Applications/iterm.app" :hyper-mode]
+                    [:e "open -a 'Finder'" :hyper-mode]
+                    [:b "open -na 'Chromium'" :hyper-mode]
+                    [:t "open -a 'Things3.app'" :hyper-mode]
+                    [:!Cb "open -na 'Microsoft Edge'" :hyper-mode]
+                    [:!Cw "open -na 'Microsoft Edge' --args --new-window 'https://sertoma.sharepoint.com/Lists/Work%20Orders/Open%20Requests.aspx?env=WebViewList&viewid=c96cafdf%2D4380%2D415a%2Dbfe3%2Dad20021c2c40&id=%2FLists%2FWork%20Orders'" :hyper-mode]
+                    [:!Co "open -na 'Microsoft OneNote'" :hyper-mode]
+                    [:!Cm "open -a 'Messages'" :hyper-mode]
+                    [:v "open -a /Applications/Vieb.app --site-isolation=strict" :hyper-mode]
+                    [:!Cs "open -a 'System Preferences'" :hyper-mode]
+
+
+            ]
+        }
+    ]
+    ;;code won't readcheatsheet section
+    ;;! stands for mandatory
+    ;;# stands for optional
+    ;;C T O S for left command control optional shift
+    ;;F for fn
+    ;;need to prefix C T O S F with ! or #
+    :cheatsheet {:!Ca "command a" ;;mandatory left_command
+                 :!Ta "control a" ;;mandatory left_control
+                 :!Oa "option a"
+                 :!Sa "shift a"
+                 :#Sa "shift a" ;;keycode a, optional left_shift
+                 :!CTOa "command control option a"
+                 :!Cspacebar "command space"
+                 :!Fa "fn a"
+                 :##a "keycode a optional any"
+                 :!!a "mandatory hyper(control command option shift) a" } }

@@ -1,0 +1,97 @@
+
+format="""
+$username\
+$hostname\
+$shlvl\
+$kubernetes\
+$directory\
+$vcsh\
+$git_branch\
+$git_commit\
+$git_state\
+$git_status\
+$hg_branch\
+$docker_context\
+$package\
+$cmake\
+$dart\
+$deno\
+$dotnet\
+$elixir\
+$elm\
+$erlang\
+$golang\
+$helm\
+$java\
+$julia\
+$kotlin\
+$nim\
+$nodejs\
+$ocaml\
+$perl\
+$php\
+$purescript\
+$python\
+$red\
+$ruby\
+$rust\
+$scala\
+$swift\
+$terraform\
+$vagrant\
+$zig\
+$nix_shell\
+$conda\
+$memory_usage\
+$aws\
+$gcloud\
+$openstack\
+$env_var\
+$crystal\
+$custom\
+$cmd_duration\
+$line_break\
+$lua\
+$jobs\
+$battery\
+$time\
+$status\
+$shell\
+$character"""
+
+# [character]
+# error_symbol = "[✗](bold red) "
+
+# [cmd_duration]
+# min_time = 1
+# show_milliseconds = true
+# format = "took [$duration](bold yellow)"
+
+[line_break]
+disabled = true
+
+[shell]
+disabled = false
+
+
+# [directory]
+# truncation_length = 100
+# truncate_to_repo = false
+
+#  [php]
+#  disabled = true
+
+# [time]
+# disabled = false
+# use_12hr = true
+# time_format = "%I:%M %p"
+
+# [username]
+# disabled = false
+# show_always = true
+# format = "[$user]($style)"
+
+# [hostname]
+# disabled = false
+# ssh_only = false
+# format = "@[$hostname]($style)"
