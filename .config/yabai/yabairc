@@ -79,7 +79,7 @@ yabai -m rule --add app="^Messages$" layer=above manage=off
 yabai -m rule --add app="^Things$" manage=off
 yabai -m rule --add app="^Mem Helper$" manage=off layer=above
 yabai -m rule --add app="^VMware Remote Console$" manage=off layer=above
-
+yabai -m rule --add app="^AndroidMessages$" manage=off layer=above
 
 # signals
 # yabai -m signal --add event=window_destroyed action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse"

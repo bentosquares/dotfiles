@@ -118,7 +118,8 @@
                     [:!Cb "open -na 'Microsoft Edge'" :hyper-mode]
                     [:!Cw "open -na 'Microsoft Edge' --args --new-window 'https://sertoma.sharepoint.com/Lists/Work%20Orders/Open%20Requests.aspx?env=WebViewList&viewid=c96cafdf%2D4380%2D415a%2Dbfe3%2Dad20021c2c40&id=%2FLists%2FWork%20Orders'" :hyper-mode]
                     [:!Co "open -na 'Microsoft OneNote'" :hyper-mode]
-                    [:!Cm "open -a 'AndroidMessages'" :hyper-mode]
+;;                  [:!Cm "open -a 'Messages'" :hyper-mode]
+                    [:!Cm "osascript ~/.config/yabai/toggle-androidmessages.scpt" :hyper-mode]
                     [:v "open -a /Applications/Vieb.app --site-isolation=strict" :hyper-mode]
                     [:!Cs "open -a 'System Preferences'" :hyper-mode]
 
