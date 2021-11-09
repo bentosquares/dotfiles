@@ -40,7 +40,7 @@ yabai -m config mouse_drop_action            swap
 
 ## Change how yabai looks
 yabai -m config layout bsp
-yabai -m config top_padding 26
+yabai -m config top_padding 6
 yabai -m config bottom_padding 6
 yabai -m config left_padding 6
 yabai -m config right_padding 6
@@ -78,6 +78,8 @@ yabai -m rule --add app="^Reminders$" layer=above manage=off
 yabai -m rule --add app="^Messages$" layer=above manage=off
 yabai -m rule --add app="^Things$" manage=off
 yabai -m rule --add app="^Mem Helper$" manage=off layer=above
+yabai -m rule --add app="^VMware Remote Console$" manage=off layer=above
+
 
 # signals
 # yabai -m signal --add event=window_destroyed action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse"
